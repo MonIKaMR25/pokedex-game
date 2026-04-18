@@ -5,7 +5,7 @@ export function renderStatBar(name, value) {
   return `
     <div>
       <div class="mb-1 flex items-center justify-between text-sm">
-        <span class="font-semibold capitalize">${name.replace('-', ' ')}</span>
+        <span class="font-semibold capitalize">${name.replaceAll('-', ' ')}</span>
         <span class="text-slate-500 dark:text-slate-400">${value}</span>
       </div>
       <div class="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-700">

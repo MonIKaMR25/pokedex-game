@@ -33,7 +33,7 @@ export async function renderDetailPage(app, [id]) {
         <div class="mt-4 flex flex-wrap gap-2">${pokemon.tipos.map(renderTypeBadge).join('')}</div>
         <h2 class="mt-6 text-lg font-extrabold">Habilidades</h2>
         <ul class="mt-2 list-inside list-disc text-slate-600 dark:text-slate-300">
-          ${pokemon.habilidades.map((h) => `<li class="capitalize">${h.replace('-', ' ')}</li>`).join('')}
+          ${pokemon.habilidades.map((h) => `<li class="capitalize">${h.replaceAll('-', ' ')}</li>`).join('')}
         </ul>
         <button id="capture-btn" ${captureButtonState(pokemon.id)}>${isCaptured(pokemon.id) ? 'Capturado' : 'Capturar'}</button>
       </section>

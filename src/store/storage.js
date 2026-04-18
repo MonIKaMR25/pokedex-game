@@ -49,5 +49,6 @@ export function getConfig() {
 }
 
 export function setConfig(config) {
-  localStorage.setItem(KEYS.config, JSON.stringify({ ...getConfig(), ...config }));
+  const currentConfig = getConfig();
+  localStorage.setItem(KEYS.config, JSON.stringify({ ...currentConfig, ...config }));
 }
