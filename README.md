@@ -30,7 +30,7 @@ Aplicación SPA estática estilo juego de Pokémon, construida con **HTML + Tail
 Como es una SPA estática con módulos ES, usa un servidor local:
 
 ```bash
-cd /home/runner/work/pokedex-game/pokedex-game
+cd pokedex-game
 python3 -m http.server 8080
 ```
 

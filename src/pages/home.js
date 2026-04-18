@@ -7,7 +7,7 @@ let cachedTypes = null;
 
 function renderFilters(types) {
   return `
-    <section class="mb-4 grid grid-cols-1 gap-3 rounded-2xl bg-white p-4 shadow dark:bg-slate-900 md:grid-cols-2">
+    <section id="home-filters" class="mb-4 grid grid-cols-1 gap-3 rounded-2xl bg-white p-4 shadow dark:bg-slate-900 md:grid-cols-2">
       <input id="search-input" type="search" placeholder="Buscar por nombre..." class="w-full rounded-xl border border-slate-200 bg-transparent px-3 py-2 outline-none ring-indigo-400 focus:ring dark:border-slate-700" />
       <select id="type-filter" class="w-full rounded-xl border border-slate-200 bg-transparent px-3 py-2 outline-none ring-indigo-400 focus:ring dark:border-slate-700">
         <option value="">Todos los tipos</option>
@@ -46,7 +46,7 @@ export async function renderHomePage(app) {
     }
   }
 
-  app.querySelector('section + section').outerHTML = renderFilters(cachedTypes);
+  app.querySelector('#home-filters').outerHTML = renderFilters(cachedTypes);
 
   const content = app.querySelector('#home-content');
   const searchInput = app.querySelector('#search-input');

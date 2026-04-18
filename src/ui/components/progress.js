@@ -1,5 +1,5 @@
 export function renderStatBar(name, value) {
-  const normalized = Math.min(100, Math.max(0, value));
+  const normalized = Math.min(100, Math.max(0, (value / 255) * 100));
   return `
     <div>
       <div class="mb-1 flex items-center justify-between text-sm">

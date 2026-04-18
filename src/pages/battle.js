@@ -3,9 +3,16 @@ import { getConfig, setConfig } from '../store/storage.js';
 import { renderTypeBadge } from '../ui/components/badges.js';
 
 let cachedChoices = null;
+const MIN_WINNER_HP = 45;
+const WINNER_HP_RANGE = 20;
+const LOSER_HP_RANGE = 25;
 
 function basePower(pokemon) {
   return pokemon.stats.reduce((sum, stat) => sum + stat.valor, 0);
+}
+
+function extractIdFromUrl(url) {
+  return url.split('/').filter(Boolean).pop();
 }
 
 function card(pokemon, hp = 100, side = 'left') {
@@ -95,8 +102,8 @@ export async function renderBattlePage(app) {
     let rival;
     try {
       [player, rival] = await Promise.all([
-        getPokemonById(playerRef.url.split('/').filter(Boolean).pop()),
-        getPokemonById(rivalRef.url.split('/').filter(Boolean).pop())
+        getPokemonById(extractIdFromUrl(playerRef.url)),
+        getPokemonById(extractIdFromUrl(rivalRef.url))
       ]);
     } catch {
       result.textContent = 'No se pudo iniciar la batalla por un error de red.';
@@ -112,8 +119,14 @@ export async function renderBattlePage(app) {
 
     const playerPower = basePower(player) + Math.floor(Math.random() * 40);
     const rivalPower = basePower(rival) + Math.floor(Math.random() * 40);
-    const playerHp = playerPower >= rivalPower ? Math.floor(Math.random() * 20) + 45 : Math.floor(Math.random() * 25);
-    const rivalHp = playerPower >= rivalPower ? Math.floor(Math.random() * 25) : Math.floor(Math.random() * 20) + 45;
+    const playerHp =
+      playerPower >= rivalPower
+        ? Math.floor(Math.random() * WINNER_HP_RANGE) + MIN_WINNER_HP
+        : Math.floor(Math.random() * LOSER_HP_RANGE);
+    const rivalHp =
+      playerPower >= rivalPower
+        ? Math.floor(Math.random() * LOSER_HP_RANGE)
+        : Math.floor(Math.random() * WINNER_HP_RANGE) + MIN_WINNER_HP;
 
     setTimeout(() => {
       const [playerHpBar, rivalHpBar] = app.querySelectorAll('.battle-hp');
