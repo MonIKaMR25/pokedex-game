@@ -6,6 +6,8 @@ let cachedChoices = null;
 const MIN_WINNER_HP = 45;
 const WINNER_HP_RANGE = 20;
 const LOSER_HP_RANGE = 25;
+const BATTLE_OPTION_LIMIT = 40;
+const RANDOM_POWER_BONUS = 40;
 
 function basePower(pokemon) {
   return pokemon.stats.reduce((sum, stat) => sum + stat.valor, 0);
@@ -72,7 +74,7 @@ export async function renderBattlePage(app) {
 
   function fillOptions() {
     const query = search.value.trim().toLowerCase();
-    const filtered = cachedChoices.filter((c) => c.name.includes(query)).slice(0, 40);
+    const filtered = cachedChoices.filter((c) => c.name.includes(query)).slice(0, BATTLE_OPTION_LIMIT);
     select.innerHTML = filtered
       .map((c) => `<option value="${c.name}">${c.name}</option>`)
       .join('');
@@ -117,8 +119,8 @@ export async function renderBattlePage(app) {
     hitSfx.currentTime = 0;
     hitSfx.play().catch(() => {});
 
-    const playerPower = basePower(player) + Math.floor(Math.random() * 40);
-    const rivalPower = basePower(rival) + Math.floor(Math.random() * 40);
+    const playerPower = basePower(player) + Math.floor(Math.random() * RANDOM_POWER_BONUS);
+    const rivalPower = basePower(rival) + Math.floor(Math.random() * RANDOM_POWER_BONUS);
     const playerHp =
       playerPower >= rivalPower
         ? Math.floor(Math.random() * WINNER_HP_RANGE) + MIN_WINNER_HP
