@@ -8,6 +8,7 @@ const WINNER_HP_RANGE = 20;
 const LOSER_HP_RANGE = 25;
 const BATTLE_OPTION_LIMIT = 40;
 const RANDOM_POWER_BONUS = 40;
+const KANTO_POKEMON_LIMIT = 151;
 
 function basePower(pokemon) {
   return pokemon.stats.reduce((sum, stat) => sum + stat.valor, 0);
@@ -47,7 +48,7 @@ export async function renderBattlePage(app) {
 
   if (!cachedChoices) {
     try {
-      cachedChoices = await getPokemonListLite(151);
+    cachedChoices = await getPokemonListLite(KANTO_POKEMON_LIMIT);
     } catch {
       app.querySelector('#battle-arena').innerHTML =
         '<p class="rounded-2xl bg-white p-6 text-center shadow dark:bg-slate-900 lg:col-span-2">No se pudieron cargar los Pokémon para batalla.</p>';

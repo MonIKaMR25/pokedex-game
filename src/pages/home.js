@@ -4,7 +4,7 @@ import { renderSkeletonCards } from '../ui/components/skeleton.js';
 
 let cachedPokemon = null;
 let cachedTypes = null;
-const HOME_LIST_LIMIT = 80;
+const HOME_INITIAL_POKEMON_LIMIT = 80;
 
 function renderFilters(types) {
   return `
@@ -37,7 +37,10 @@ export async function renderHomePage(app) {
 
   if (!cachedPokemon) {
     try {
-      const [pokemon, types] = await Promise.all([getPokemonList(HOME_LIST_LIMIT), getPokemonTypes()]);
+      const [pokemon, types] = await Promise.all([
+        getPokemonList(HOME_INITIAL_POKEMON_LIMIT),
+        getPokemonTypes()
+      ]);
       cachedPokemon = pokemon;
       cachedTypes = types;
     } catch {
