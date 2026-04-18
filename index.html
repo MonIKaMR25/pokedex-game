@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      if (window.tailwind) {
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              boxShadow: {
+                glow: '0 8px 30px rgba(99,102,241,0.35)'
+              }
+            }
+          }
+        };
+      }
+    </script>
+    <link rel="stylesheet" href="/src/styles/app.css" />
+  </head>
+  <body class="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <div class="mx-auto min-h-screen max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <header class="sticky top-2 z-10 mb-6 rounded-2xl bg-white/90 p-4 shadow-lg backdrop-blur dark:bg-slate-900/90">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <a href="#/" class="flex items-center gap-2 text-xl font-black tracking-tight text-indigo-600 dark:text-indigo-300">
+            <img src="/assets/icons/pokeball.svg" alt="Logo Pokébola" class="h-8 w-8" />
+            Pokédex Game
+          </a>
+          <nav class="flex items-center gap-2">
+            <a href="#/" class="rounded-xl px-3 py-2 text-sm font-semibold transition hover:bg-indigo-100 dark:hover:bg-slate-800">Inicio</a>
+            <a href="#/battle" class="rounded-xl px-3 py-2 text-sm font-semibold transition hover:bg-indigo-100 dark:hover:bg-slate-800">Batalla</a>
+            <a href="#/pokedex" class="rounded-xl px-3 py-2 text-sm font-semibold transition hover:bg-indigo-100 dark:hover:bg-slate-800">Mi Pokédex</a>
+            <button id="theme-toggle" class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold transition hover:scale-105 dark:border-slate-700" type="button" aria-label="Cambiar tema">
+              🌙
+            </button>
+          </nav>
+        </div>
+      </header>
+      <main id="app" class="pb-6"></main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
