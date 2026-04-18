@@ -1,5 +1,7 @@
+const MAX_POKEMON_STAT_VALUE = 255;
+
 export function renderStatBar(name, value) {
-  const percentageValue = Math.min(100, Math.max(0, (value / 255) * 100));
+  const percentageValue = Math.min(100, Math.max(0, (value / MAX_POKEMON_STAT_VALUE) * 100));
   return `
     <div>
       <div class="mb-1 flex items-center justify-between text-sm">

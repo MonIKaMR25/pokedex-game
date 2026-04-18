@@ -3,7 +3,7 @@ const API = 'https://pokeapi.co/api/v2';
 async function fetchJSON(url) {
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error('Error al consultar PokeAPI');
+    throw new Error(`Error al consultar PokeAPI (${res.status}) en ${url}`);
   }
   return res.json();
 }

@@ -9,6 +9,8 @@ const LOSER_HP_RANGE = 25;
 const BATTLE_OPTION_LIMIT = 40;
 const RANDOM_POWER_BONUS = 40;
 const KANTO_POKEMON_LIMIT = 151;
+const hitSfx = new Audio('/assets/sfx/hit.wav');
+const winSfx = new Audio('/assets/sfx/win.wav');
 
 function basePower(pokemon) {
   return pokemon.stats.reduce((sum, stat) => sum + stat.valor, 0);
@@ -62,9 +64,6 @@ export async function renderBattlePage(app) {
   const muteBtn = app.querySelector('#mute-btn');
   const arena = app.querySelector('#battle-arena');
   const result = app.querySelector('#battle-result');
-
-  const hitSfx = new Audio('/assets/sfx/hit.wav');
-  const winSfx = new Audio('/assets/sfx/win.wav');
 
   function syncMuteUI() {
     const muted = !!getConfig().muted;

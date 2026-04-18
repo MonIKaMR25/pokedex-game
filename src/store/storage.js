@@ -7,7 +7,8 @@ const KEYS = {
 function safeParse(value, fallback) {
   try {
     return value ? JSON.parse(value) : fallback;
-  } catch {
+  } catch (error) {
+    console.warn('No se pudo parsear dato de localStorage.', error);
     return fallback;
   }
 }
